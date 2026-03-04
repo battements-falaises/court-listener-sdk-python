@@ -23,6 +23,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._compat import cached_property
+from ._models import SecurityOptions
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
@@ -158,10 +159,12 @@ class CourtListener(SyncAPIClient):
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
 
-    @property
     @override
-    def auth_headers(self) -> dict[str, str]:
-        return {**self._token_auth, **self._basic_auth}
+    def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
+        return {
+            **(self._token_auth if security.get("token_auth", False) else {}),
+            **(self._basic_auth if security.get("basic_auth", False) else {}),
+        }
 
     @property
     def _token_auth(self) -> dict[str, str]:
@@ -394,10 +397,12 @@ class AsyncCourtListener(AsyncAPIClient):
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
 
-    @property
     @override
-    def auth_headers(self) -> dict[str, str]:
-        return {**self._token_auth, **self._basic_auth}
+    def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
+        return {
+            **(self._token_auth if security.get("token_auth", False) else {}),
+            **(self._basic_auth if security.get("basic_auth", False) else {}),
+        }
 
     @property
     def _token_auth(self) -> dict[str, str]:
