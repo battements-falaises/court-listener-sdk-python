@@ -1,6 +1,6 @@
 [project]
 name = "court_listener_sdk"
-version = "0.0.1"
+version = "0.1.0"
 description = "The official Python library for the court-listener API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -11,7 +11,7 @@ authors = [
 dependencies = [
   "httpx>=0.23.0, <1",
   "pydantic>=1.9.0, <3",
-  "typing-extensions>=4.10, <5",
+  "typing-extensions>=4.14, <5",
   "anyio>=3.5.0, <5",
   "distro>=1.7.0, <2",
   "sniffio",
@@ -37,8 +37,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/court-listener-sdk-python"
-Repository = "https://github.com/stainless-sdks/court-listener-sdk-python"
+Homepage = "https://github.com/battements-falaises/court-listener-sdk-python"
+Repository = "https://github.com/battements-falaises/court-listener-sdk-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
@@ -112,7 +112,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/court-listener-sdk-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/battements-falaises/court-listener-sdk-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -154,7 +154,7 @@ show_error_codes = true
 #
 # We also exclude our `tests` as mypy doesn't always infer
 # types correctly and Pyright will still catch any type errors.
-exclude = ['src/court_listener_sdk/_files.py', '_dev/.*.py', 'tests/.*']
+exclude = ["src/court_listener_sdk/_files.py", "_dev/.*.py", "tests/.*"]
 
 strict_equality = true
 implicit_reexport = true
